@@ -1,6 +1,6 @@
 "use client";
 
-import PageContainer from "@/components/ui/PageContainer";
+import PageContainer from "@/components/common/PageContainer";
 import CatDetail from "@/components/ui/CatDetail";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
