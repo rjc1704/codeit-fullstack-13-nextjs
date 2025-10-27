@@ -1,19 +1,13 @@
 "use client";
 
+import PageContainer from "@/components/ui/PageContainer";
+import CatDetail from "@/components/ui/CatDetail";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-
-async function getCatByid(id) {
-  const res = await fetch(
-    `https://api.thecatapi.com/v1/images/search?api_key=${process.env.NEXT_PUBLIC_CAT_API_KEY}&breed_ids=${id}`,
-  );
-
-  if (!res.ok) {
-    throw new Error("고양이 데이터를 가져오는데 실패했습니다");
-  }
-
-  return res.json();
-}
+import Loading from "@/components/ui/Loading";
+import ErrorDisplay from "@/components/ui/ErrorDisplay";
+import { getCatByIdClient } from "@/lib/services/catApi";
+import BreedDetailHeader from "@/components/ui/BreedDetailHeader";
 
 export default function CatBreedPage() {
   console.log("CSR-CatBreedPage");
@@ -25,7 +19,7 @@ export default function CatBreedPage() {
   useEffect(() => {
     async function loadCat() {
       try {
-        const cats = await getCatByid(id);
+        const cats = await getCatByIdClient(id);
         const cat = cats[0];
         setCat(cat);
       } catch (err) {
@@ -38,37 +32,14 @@ export default function CatBreedPage() {
     loadCat();
   }, [id]);
 
-  if (loading) return <div>로딩중...</div>;
-  if (error) return <div>{error.message}</div>;
-  if (!cat) return <div>고양이 정보를 찾을 수 없습니다.</div>;
+  if (loading) return <Loading />;
+  if (error) return <ErrorDisplay message={error.message} />;
+  if (!cat) return <ErrorDisplay message="고양이 정보를 찾을 수 없습니다." />;
 
   return (
-    <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <h1 className="text-3xl font-bold mb-4">{cat.breeds[0].name}</h1>
-
-      <main className="w-full max-w-4xl">
-        <div className="flex flex-col md:flex-row gap-8">
-          <div className="relative w-full md:w-1/2 h-[400px] bg-lime-400 rounded-lg overflow-hidden">
-            <img
-              src={cat.url}
-              alt={cat.breeds[0].name}
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          <div className="w-full md:w-1/2 space-y-6">
-            <div>
-              <h2 className="text-xl font-semibold mb-2">기원</h2>
-              <p className="text-gray-700">{cat.breeds[0].origin}</p>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-semibold mb-2">설명</h2>
-              <p className="text-gray-700">{cat.breeds[0].description}</p>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
+    <PageContainer title={cat.breeds[0].name}>
+      <BreedDetailHeader breed={cat.breeds[0]} />
+      <CatDetail cat={cat} />
+    </PageContainer>
   );
 }
