@@ -1,5 +1,5 @@
 import CatCardList from "@/components/ui/CatCardList";
-import PageContainer from "@/components/ui/PageContainer";
+import PageContainer from "@/components/common/PageContainer";
 import Image from "next/image";
 import staticCat from "../../public/sampleCat.jpg";
 import { getPlaiceholder } from "plaiceholder";
