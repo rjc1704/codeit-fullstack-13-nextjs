@@ -1,4 +1,5 @@
 import { getCatBreeds } from "@/lib/services/catApi";
+import Image from "next/image";
 import Link from "next/link";
 
 export default async function CatBreeds() {
@@ -14,10 +15,12 @@ export default async function CatBreeds() {
             <Link href={`/breeds/${breed.id}`} key={breed.id}>
               <div className="flex flex-col overflow-hidden rounded-lg border border-gray-200 shadow-md hover:shadow-lg transition-shadow">
                 <div className="relative h-64 bg-lime-400">
-                  <img
+                  <Image
                     src={breed.image?.url || "/placeholder-cat.jpg"}
                     alt={breed.name}
-                    className="object-cover w-full h-full"
+                    fill
+                    sizes="570px"
+                    className="object-cover"
                   />
                 </div>
                 <div className="p-4">

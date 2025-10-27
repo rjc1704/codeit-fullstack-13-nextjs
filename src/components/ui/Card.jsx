@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 /**
  * 기본 카드 컴포넌트
  * @param {Object} props
@@ -9,13 +11,15 @@ export default function Card({ children, className = "", imageUrl, name }) {
     <div
       className={`flex flex-col overflow-hidden rounded-lg border border-gray-200 shadow-md hover:shadow-lg transition-shadow ${className}`}
     >
-      <div className="relative h-64 bg-lime-400">
-        <img
+      <figure className="relative h-64 bg-lime-400">
+        <Image
           src={imageUrl || "/placeholder-cat.jpg"}
+          fill
           alt={name}
-          className="object-cover w-full h-full"
+          sizes="570px"
+          className="object-cover"
         />
-      </div>
+      </figure>
       <div className="p-4">
         <h2 className="text-lg font-semibold">{name}</h2>
         {children}
