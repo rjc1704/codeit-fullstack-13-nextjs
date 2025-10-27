@@ -1,5 +1,5 @@
 import CatCardList from "@/components/ui/CatCardList";
-import PageContainer from "@/components/ui/PageContainer";
+import PageContainer from "@/components/common/PageContainer";
 
 async function getCats() {
   const res = await fetch(
