@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Loading from "@/components/ui/Loading";
 import ErrorDisplay from "@/components/ui/ErrorDisplay";
 import { getCatByIdClient } from "@/lib/services/catApi";
-import BreedDetailHeader from "@/components/ui/BreedDetailHeader";
+import BreedDetailHeader from "./_components/BreedDetailHeader";
 
 export default function CatBreedPage() {
   console.log("CSR-CatBreedPage");
