@@ -15,17 +15,19 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen p-8">
-      <h1 className="text-2xl mb-4">The Cat API</h1>
+      <h1 className="text-secondary font-bold text-2xl mb-4 text-center">
+        The Cat API
+      </h1>
 
       <main>
-        <div className="grid grid-cols-3 gap-1">
+        <div className="grid grid-cols-4 gap-[16px]">
           {cats.map((cat) => (
-            <div key={cat.id} className="border">
+            <div key={cat.id} className="border rounded-[10px] overflow-hidden">
               <figure className="h-48">
                 <img
                   src={cat.url}
                   alt={cat.breeds[0]?.name || "고양이"}
-                  className="w-full h-full"
+                  className="object-cover w-full h-full"
                 />
               </figure>
               <div className="p-2">
