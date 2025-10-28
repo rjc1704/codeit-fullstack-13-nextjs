@@ -1,9 +1,20 @@
 "use client";
 import Link from "next/link";
 import { useTheme } from "@/providers/ThemeProvider";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const { toggleTheme, isDarkMode } = useTheme();
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <header className="w-full bg-white shadow-md dark:bg-black dark:text-white">
       <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center">
@@ -21,6 +32,10 @@ export default function Header() {
               </li>
             </ul>
           </nav>
+          {/* 현재 시각 표시 - hydration error 발생 가능 */}
+          <div className="text-sm text-gray-600 dark:text-gray-300">
+            {currentTime?.toLocaleTimeString()}
+          </div>
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full"

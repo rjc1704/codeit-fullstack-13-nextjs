@@ -1,8 +1,11 @@
 "use client";
 
 import { deleteComment } from "@/lib/services/actions/comments";
+import { useState } from "react";
 
 export default function CommentItem({ comment }) {
+  const [randomId] = useState(() => Math.random().toString(36).slice(2, 5));
+
   const handleDelete = async (commentId) => {
     if (!window.confirm("정말 삭제하시겠습니까?")) {
       return;
@@ -19,8 +22,9 @@ export default function CommentItem({ comment }) {
         <div>
           <p className="text-gray-700">{comment.content}</p>
           <p className="text-sm text-gray-500">
-            {new Date(comment.createdAt).toLocaleString()}
+            {new Date(comment.createdAt).toLocaleTimeString()}
           </p>
+          <p className="text-xs text-gray-400">ID: {randomId}</p>
         </div>
         <button
           className="text-red-500 hover:text-red-700 text-sm"
