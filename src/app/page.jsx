@@ -1,17 +1,6 @@
 import CatCardList from "@/components/ui/CatCardList";
 import PageContainer from "@/components/common/PageContainer";
-
-async function getCats() {
-  const res = await fetch(
-    `https://api.thecatapi.com/v1/images/search?api_key=${process.env.CAT_API_KEY}&limit=8&has_breeds=1`,
-  );
-
-  if (!res.ok) {
-    throw new Error("고양이 데이터를 가져오는데 실패했습니다");
-  }
-
-  return res.json();
-}
+import { getCats } from "@/lib/services/catApi";
 
 export default async function Home() {
   const cats = await getCats();
