@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 
 export default function Header() {
   const { toggleTheme, isDarkMode } = useTheme();
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const [currentTime, setCurrentTime] = useState(null);
 
   useEffect(() => {
     const timer = setInterval(() => {

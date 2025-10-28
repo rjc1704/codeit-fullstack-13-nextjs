@@ -1,10 +1,10 @@
 "use client";
 
 import { deleteComment } from "@/lib/services/actions/comments";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function CommentItem({ comment }) {
-  const [randomId] = useState(() => Math.random().toString(36).slice(2, 5));
+  const [randomId, setRandomId] = useState("");
 
   const handleDelete = async (commentId) => {
     if (!window.confirm("정말 삭제하시겠습니까?")) {
@@ -15,6 +15,12 @@ export default function CommentItem({ comment }) {
       alert(result.error || "댓글 삭제에 실패했습니다");
     }
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setRandomId(Math.random().toString(36).slice(2, 5));
+    }, 0);
+  }, []);
 
   return (
     <li key={comment.id} className="border-b pb-2">

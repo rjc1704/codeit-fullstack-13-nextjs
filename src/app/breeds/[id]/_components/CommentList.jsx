@@ -1,5 +1,6 @@
 import { getComments } from "@/lib/services/actions/comments";
 import CommentItem from "./CommentItem";
+import DynamicCommentItem from "./DynamicCommentItem";
 
 export default async function CommentList({ breedId }) {
   const comments = await getComments(breedId);
@@ -12,7 +13,7 @@ export default async function CommentList({ breedId }) {
       ) : (
         <ul className="space-y-4">
           {comments.map((comment) => (
-            <CommentItem key={comment.id} comment={comment} />
+            <DynamicCommentItem key={comment.id} comment={comment} />
           ))}
         </ul>
       )}
