@@ -32,7 +32,7 @@ export async function getComments(breedId) {
   await new Promise((resolve) => setTimeout(resolve, 3000));
   const response = await fetch(
     `http://localhost:4000/comments?breedId=${breedId}&_sort=createdAt&_order=desc`,
-    { cache: "no-store" },
+    { cache: "force-cache" },
   );
   return response.json();
 }

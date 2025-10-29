@@ -7,7 +7,7 @@ export default function proxy(request) {
   const { pathname } = request.nextUrl;
   console.log("pathname", pathname);
   const token = request.cookies.get("token");
-  console.log("token", token);
+  // console.log("token", token);
   if (token) {
     console.log("로그인 상태입니다.");
     // 여기서 필요한 추가 작업 수행 가능

@@ -17,7 +17,7 @@ export default async function CatBreeds() {
       <main className="w-full max-w-6xl">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {breeds.map((breed) => (
-            <Link href={`/breeds/${breed.id}`} key={breed.id}>
+            <Link prefetch={false} href={`/breeds/${breed.id}`} key={breed.id}>
               <div className="flex flex-col overflow-hidden rounded-lg border border-gray-200 shadow-md hover:shadow-lg transition-shadow">
                 <div className="relative h-64 bg-lime-400">
                   <Image

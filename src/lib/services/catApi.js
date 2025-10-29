@@ -39,6 +39,7 @@ export async function getCatBreeds() {
 export async function getCatById(id) {
   const res = await fetch(
     `https://api.thecatapi.com/v1/images/search?api_key=${process.env.CAT_API_KEY}&breed_ids=${id}`,
+    { cache: "force-cache" },
   );
 
   if (!res.ok) {
