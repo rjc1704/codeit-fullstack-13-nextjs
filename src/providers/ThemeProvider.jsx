@@ -16,14 +16,7 @@ export const useTheme = () => {
 
 const ThemeProvider = ({ children }) => {
   // 현재 테마 상태 (dark 또는 light)
-  const [theme, setTheme] = useState(() => {
-    // 클라이언트 사이드에서만 로컬 스토리지 접근
-    if (typeof window !== "undefined") {
-      const savedTheme = window.localStorage.getItem("theme");
-      return savedTheme || "light";
-    }
-    return "light"; // 서버 사이드 렌더링 시 기본값
-  });
+  const [theme, setTheme] = useState("light");
 
   // 테마 변경 함수
   const toggleTheme = () => {
@@ -44,6 +37,11 @@ const ThemeProvider = ({ children }) => {
 
   // 테마가 변경될 때마다 HTML 문서에 dark 클래스 추가/제거
   useEffect(() => {
+    setTimeout(() => {
+      const savedTheme = window.localStorage.getItem("theme") || "light";
+      setTheme(savedTheme);
+    }, 0);
+
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
