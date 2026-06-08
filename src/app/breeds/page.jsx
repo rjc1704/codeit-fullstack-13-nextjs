@@ -6,7 +6,7 @@ export default async function CatBreeds() {
   const breeds = await getCatBreeds();
 
   return (
-    <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-20 font-sans">
       <h1 className="text-3xl font-bold mb-4">고양이 품종 리스트</h1>
 
       <main className="w-full max-w-6xl">
