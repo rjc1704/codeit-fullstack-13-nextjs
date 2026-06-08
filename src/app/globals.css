@@ -4,3 +4,6 @@
   --color-primary: #ff6b6b;
   --color-secondary: rgba(75, 192, 192, 0.8);
 }
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+}
